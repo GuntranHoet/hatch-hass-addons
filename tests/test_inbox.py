@@ -13,8 +13,8 @@ with open(opts_path, "w") as f:
         {
             "api_token": "test-token-123",
             "log_level": "warning",
-            "prompt_entity_id": "input_text.melnik_prompt",
-            "response_entity_id": "input_text.melnik_response",
+            "prompt_entity_id": "input_text.muse_prompt",
+            "response_entity_id": "input_text.muse_response",
             "inbox_poll_secs": 3,
         },
         f,
@@ -83,13 +83,13 @@ r = client.get("/api/inbox", headers=AUTH)
 check("inbox with token -> 200", r.status_code == 200, r.status_code)
 
 # --- watcher: new text is queued and helper cleared --------------------------
-fake.states["input_text.melnik_prompt"] = "turn on the kitchen light"
+fake.states["input_text.muse_prompt"] = "turn on the kitchen light"
 last_seen, found = bridge.poll_prompt_helper(None)
 check("helper found", found is True)
 check("prompt queued", len(bridge.inbox_pending) == 1, len(bridge.inbox_pending))
 p = bridge.inbox_pending[0]
 check("prompt fields", p["text"] == "turn on the kitchen light" and len(p["id"]) == 12, p)
-check("helper cleared", fake.states["input_text.melnik_prompt"] == "")
+check("helper cleared", fake.states["input_text.muse_prompt"] == "")
 check("last_seen set", last_seen == "turn on the kitchen light", last_seen)
 
 # poll again while clear: dedupe marker resets
@@ -98,7 +98,7 @@ check("clear resets dedupe marker", last_seen is None, last_seen)
 check("no duplicate queued", len(bridge.inbox_pending) == 1)
 
 # identical text typed again must still queue (regression test for dedupe bug)
-fake.states["input_text.melnik_prompt"] = "turn on the kitchen light"
+fake.states["input_text.muse_prompt"] = "turn on the kitchen light"
 last_seen, found = bridge.poll_prompt_helper(last_seen)
 check("identical retype queued", len(bridge.inbox_pending) == 2, len(bridge.inbox_pending))
 
@@ -128,19 +128,19 @@ check("HA notified", len(fake.notifications) == 1
       fake.notifications)
 # response helper does not exist -> no mirror attempt beyond the GET
 check("no response-helper mirror when missing",
-      not [c for c in fake.set_values if c["entity_id"] == "input_text.melnik_response"])
+      not [c for c in fake.set_values if c["entity_id"] == "input_text.muse_response"])
 
 # with the response helper present, the reply is mirrored
-fake.states["input_text.melnik_response"] = ""
+fake.states["input_text.muse_response"] = ""
 pid2 = client.get("/api/inbox", headers=AUTH).get_json()["prompts"][0]["id"]
 client.post("/api/inbox/ack", headers=AUTH, json={"id": pid2, "response": "Done."})
 check("response mirrored to helper",
-      fake.states["input_text.melnik_response"] == "Done.", fake.states)
+      fake.states["input_text.muse_response"] == "Done.", fake.states)
 r = client.get("/api/inbox/status")
 check("inbox drained", r.get_json()["pending"] == 0, r.get_json())
 
 # --- missing helper -----------------------------------------------------------
-del fake.states["input_text.melnik_prompt"]
+del fake.states["input_text.muse_prompt"]
 last_seen, found = bridge.poll_prompt_helper(None)
 check("missing helper -> found=False, no crash", found is False, (last_seen, found))
 

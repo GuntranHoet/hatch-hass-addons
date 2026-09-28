@@ -36,8 +36,8 @@ To move from v1.2.0 to v1.3.0: copy the new `hatch_bridge` folder over the
 old one in `/addons/`, then **Settings → Add-ons → Add-on Store → ⋯ →
 Check for updates**, open the app and **Rebuild** (or uninstall + reinstall).
 Your `api_token` and other options are kept. New in v1.3.0: the default
-assistant name is `Muse` instead of `Melnik` — existing installs keep their
-configured values, so nothing changes for them.
+assistant name is `Muse` — existing installs keep their configured values,
+so nothing changes for them.
 
 To move from v1.1.0 to v1.2.0: copy the new `hatch_bridge` folder over the
 old one in `/addons/`, then **Settings → Add-ons → Add-on Store → ⋯ →
