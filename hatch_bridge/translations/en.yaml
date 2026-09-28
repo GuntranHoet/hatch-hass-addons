@@ -1,0 +1,18 @@
+configuration:
+  api_token:
+    name: API token
+    description: "Long random secret your Hatch assistant uses to authenticate (sent as a Bearer token). Generate one with: openssl rand -hex 32"
+  log_level:
+    name: Log level
+    description: Verbosity of the add-on log.
+  prompt_entity_id:
+    name: Prompt entity
+    description: "input_text helper the bridge watches for prompts (e.g. input_text.melnik_prompt). The bridge tries to create it on startup."
+  response_entity_id:
+    name: Response entity
+    description: "input_text helper the assistant's reply is mirrored into, if it exists (e.g. input_text.melnik_response)."
+  inbox_poll_secs:
+    name: Inbox poll interval
+    description: Seconds between checks of the prompt helper (1-60).
+network:
+  8099/tcp: Hatch Bridge API port
