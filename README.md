@@ -24,7 +24,7 @@ There is no generic proxy: only these curated endpoints exist.
 
 Type into the prompt `input_text` helper in Home Assistant (the bridge tries
 to create it on startup using your configured `assistant_name`, e.g. a Text
-helper named "Melnik prompt") and your AI assistant picks it up within
+helper named "Muse prompt") and your AI assistant picks it up within
 ~15 seconds, acts on it, and answers back with a persistent notification
 titled with the assistant's name. Automations can use the same helper via
 `input_text.set_value` to ask the assistant to do something on a trigger —
@@ -32,11 +32,18 @@ see `DOCS.md` for an example.
 
 ## Upgrading
 
+To move from v1.2.0 to v1.3.0: copy the new `hatch_bridge` folder over the
+old one in `/addons/`, then **Settings → Add-ons → Add-on Store → ⋯ →
+Check for updates**, open the app and **Rebuild** (or uninstall + reinstall).
+Your `api_token` and other options are kept. New in v1.3.0: the default
+assistant name is `Muse` instead of `Melnik` — existing installs keep their
+configured values, so nothing changes for them.
+
 To move from v1.1.0 to v1.2.0: copy the new `hatch_bridge` folder over the
 old one in `/addons/`, then **Settings → Add-ons → Add-on Store → ⋯ →
 Check for updates**, open the app and **Rebuild** (or uninstall + reinstall).
 Your `api_token` and other options are kept. New in v1.2.0: the
-`assistant_name` option (defaults to `Melnik`) controls the auto-created
+`assistant_name` option (defaults to `Muse`) controls the auto-created
 helper's name, the notification title, and the default helper entity IDs —
 set it to your own assistant's name.
 

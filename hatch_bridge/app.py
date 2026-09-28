@@ -32,7 +32,7 @@ from flask import Flask, Response, jsonify, request
 OPTIONS_PATH = os.environ.get("HATCH_BRIDGE_OPTIONS", "/data/options.json")
 HA_API = "http://supervisor/core/api"
 LISTEN_PORT = 8099
-VERSION = "1.2.0"
+VERSION = "1.3.0"
 
 log = logging.getLogger("hatch-bridge")
 
@@ -79,7 +79,7 @@ if not SUPERVISOR_TOKEN:
 # acts as the "prompt me" entity: anything typed into it (by the dashboard
 # or by an automation) is queued here, picked up by the assistant's
 # watcher, acted on, and answered back via a persistent notification.
-ASSISTANT_NAME = str(OPTIONS.get("assistant_name") or "Melnik").strip() or "Melnik"
+ASSISTANT_NAME = str(OPTIONS.get("assistant_name") or "Muse").strip() or "Muse"
 ASSISTANT_SLUG = re.sub(r"[^a-z0-9]+", "_", ASSISTANT_NAME.lower()).strip("_") or "assistant"
 PROMPT_ENTITY = str(
     OPTIONS.get("prompt_entity_id") or "input_text.%s_prompt" % ASSISTANT_SLUG

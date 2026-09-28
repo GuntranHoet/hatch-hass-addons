@@ -1,5 +1,5 @@
 name: Hatch Bridge
-version: 1.2.0
+version: 1.3.0
 slug: hatch_bridge
 description: Token-protected API bridge that lets your AI assistant read Home Assistant states and call services. Includes a prompt inbox: type into an input_text helper and the assistant picks it up. v1.2.0 makes the assistant name configurable so the add-on can be shared.
 arch:
@@ -15,9 +15,9 @@ watchdog: http://[HOST]:[PORT:8099]/ping
 options:
   api_token: ""
   log_level: info
-  assistant_name: Melnik
-  prompt_entity_id: input_text.melnik_prompt
-  response_entity_id: input_text.melnik_response
+  assistant_name: Muse
+  prompt_entity_id: input_text.muse_prompt
+  response_entity_id: input_text.muse_response
   inbox_poll_secs: 3
 schema:
   api_token: password

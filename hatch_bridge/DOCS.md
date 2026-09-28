@@ -24,7 +24,7 @@ How chatty the app log is: `debug`, `info` (default), `warning`, `error`.
 
 ### Option: `assistant_name`
 
-The name of your AI assistant (default `Melnik`). It is used for the
+The name of your AI assistant (default `Muse`). It is used for the
 auto-created prompt helper's friendly name, the persistent notification
 title, and the default helper entity IDs (`input_text.<name>_prompt` /
 `input_text.<name>_response`, lowercased). Change it to match your own
@@ -34,7 +34,7 @@ assistant; existing installs keep working because their explicit
 ### Option: `prompt_entity_id`
 
 The `input_text` helper the bridge watches for prompts
-(default `input_text.melnik_prompt`). The bridge tries to create it
+(default `input_text.muse_prompt`). The bridge tries to create it
 automatically on startup; if that fails, create it by hand: **Settings →
 Devices & services → Helpers → Create helper → Text**, name it
 "<assistant_name> prompt".
@@ -42,7 +42,7 @@ Devices & services → Helpers → Create helper → Text**, name it
 ### Option: `response_entity_id`
 
 The `input_text` helper the assistant's reply is mirrored into
-(default `input_text.melnik_response`), if it exists. Optional.
+(default `input_text.muse_response`), if it exists. Optional.
 
 ### Option: `inbox_poll_secs`
 
@@ -62,7 +62,7 @@ leaves:
 
 ```yaml
 automation:
-  - alias: "Ask Melnik for the away scene"
+  - alias: "Ask Muse for the away scene"
     trigger:
       - platform: state
         entity_id: zone.home
@@ -70,7 +70,7 @@ automation:
     action:
       - service: input_text.set_value
         target:
-          entity_id: input_text.melnik_prompt
+          entity_id: input_text.muse_prompt
         data:
           value: >-
             Everyone just left the house. Turn off all the lights except

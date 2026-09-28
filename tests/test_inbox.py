@@ -122,8 +122,8 @@ r = client.post("/api/inbox/ack", headers=AUTH,
 check("ack ok", r.status_code == 200 and r.get_json()["remaining"] == 1, r.get_json())
 check("prompt removed", all(q["id"] != pid for q in bridge.inbox_pending))
 check("HA notified", len(fake.notifications) == 1
-      and fake.notifications[0]["notification_id"] == "melnik_inbox"
-      and fake.notifications[0]["title"] == "Melnik"
+      and fake.notifications[0]["notification_id"] == "muse_inbox"
+      and fake.notifications[0]["title"] == "Muse"
       and fake.notifications[0]["message"] == "Kitchen light is on.",
       fake.notifications)
 # response helper does not exist -> no mirror attempt beyond the GET
@@ -205,7 +205,7 @@ check("auth sent with supervisor token",
       ws.sent[0] == {"type": "auth", "access_token": "dummy-supervisor-token"},
       ws.sent[0])
 check("input_text/create sent",
-      ws.sent[1] == {"id": 1, "type": "input_text/create", "name": "Melnik prompt",
+      ws.sent[1] == {"id": 1, "type": "input_text/create", "name": "Muse prompt",
                      "min": 0, "max": 255, "mode": "text"},
       ws.sent[1])
 
