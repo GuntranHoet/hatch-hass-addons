@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Hatch Bridge: a token-protected HTTP API that lets the Hatch assistant
+"""Muse Bridge: a token-protected HTTP API that lets the Muse assistant
 read Home Assistant states and call Home Assistant services.
 
 Runs as a Home Assistant app. It talks to Home Assistant Core
@@ -29,12 +29,12 @@ from functools import wraps
 import requests
 from flask import Flask, Response, jsonify, request
 
-OPTIONS_PATH = os.environ.get("HATCH_BRIDGE_OPTIONS", "/data/options.json")
+OPTIONS_PATH = os.environ.get("MUSE_BRIDGE_OPTIONS", "/data/options.json")
 HA_API = "http://supervisor/core/api"
 LISTEN_PORT = 8099
-VERSION = "1.3.0"
+VERSION = "1.4.0"
 
-log = logging.getLogger("hatch-bridge")
+log = logging.getLogger("muse-bridge")
 
 # HA domain/service names are lowercase alphanumerics + underscore.
 SAFE_NAME = re.compile(r"^[a-z0-9_]+$")
@@ -286,7 +286,7 @@ def notify_ha(response, prompt_id):
 @app.get("/ping")
 def ping():
     """Unauthenticated liveness probe for the Supervisor watchdog."""
-    return jsonify({"status": "ok", "service": "hatch-bridge", "version": VERSION})
+    return jsonify({"status": "ok", "service": "muse-bridge", "version": VERSION})
 
 
 @app.get("/")
@@ -377,7 +377,7 @@ def inbox_status():
     """Public (no auth): how many prompts are waiting, and the newest id.
 
     This is the only unauthenticated /api/* route. It reveals no prompt
-    content, only a count and an opaque id, so the Hatch watcher's polling
+    content, only a count and an opaque id, so the Muse watcher's polling
     script can detect new prompts without holding the API token.
     """
     with inbox_lock:
@@ -421,12 +421,12 @@ def inbox_ack():
 
 
 INDEX_HTML = """<!doctype html>
-<html><head><meta charset="utf-8"><title>Hatch Bridge</title>
+<html><head><meta charset="utf-8"><title>Muse Bridge</title>
 <style>body{font-family:system-ui,sans-serif;max-width:640px;margin:4rem auto;padding:0 1rem;color:#222}
 code{background:#f2f2f2;padding:.15rem .4rem;border-radius:4px}</style>
 </head><body>
-<h1>Hatch Bridge is running</h1>
-<p>This is a private API bridge for your Hatch AI assistant. It is protected
+<h1>Muse Bridge is running</h1>
+<p>This is a private API bridge for your Muse AI assistant. It is protected
 by a bearer token configured in the app <b>Configuration</b> tab.</p>
 <ul>
 <li><code>GET /ping</code> &ndash; liveness probe (no auth)</li>
@@ -456,7 +456,7 @@ def main():
         target=inbox_watcher, args=(stop_event,), daemon=True, name="inbox-watcher"
     )
     watcher.start()
-    log.info("Hatch Bridge v%s listening on port %d", VERSION, LISTEN_PORT)
+    log.info("Muse Bridge v%s listening on port %d", VERSION, LISTEN_PORT)
     try:
         serve(app, host="0.0.0.0", port=LISTEN_PORT)
     finally:

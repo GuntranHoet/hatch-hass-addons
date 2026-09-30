@@ -1,6 +1,6 @@
-name: Hatch Bridge
-version: 1.3.0
-slug: hatch_bridge
+name: Muse Bridge
+version: 1.4.0
+slug: muse_bridge
 description: Token-protected API bridge that lets your AI assistant read Home Assistant states and call services. Includes a prompt inbox: type into an input_text helper and the assistant picks it up. v1.2.0 makes the assistant name configurable so the add-on can be shared.
 arch:
   - aarch64
@@ -10,7 +10,7 @@ boot: auto
 ports:
   8099/tcp: 8099
 ports_description:
-  8099/tcp: Hatch Bridge API port (put TLS in front before exposing remotely)
+  8099/tcp: Muse Bridge API port (put TLS in front before exposing remotely)
 watchdog: http://[HOST]:[PORT:8099]/ping
 options:
   api_token: ""

@@ -1,4 +1,4 @@
-# Hatch Bridge for Home Assistant
+# Muse Bridge for Home Assistant
 
 A Home Assistant **app** (add-on) that exposes a small, token-protected HTTP API
 so your AI assistant can read entity states and call services on your
@@ -32,14 +32,21 @@ see `DOCS.md` for an example.
 
 ## Upgrading
 
-To move from v1.2.0 to v1.3.0: copy the new `hatch_bridge` folder over the
+To move from v1.3.0 to v1.4.0: this is a rebrand — the add-on is now
+**Muse Bridge** (folder `muse_bridge`, slug `muse_bridge`). Copy the new
+`muse_bridge` folder into `/addons/` alongside the old one, install it from
+the store, copy your `api_token` and other options across, then uninstall
+the old Hatch Bridge. Your prompt/response helpers (`input_text.*`) are
+untouched, so the inbox keeps working.
+
+To move from v1.2.0 to v1.3.0: copy the new `muse_bridge` folder over the
 old one in `/addons/`, then **Settings → Add-ons → Add-on Store → ⋯ →
 Check for updates**, open the app and **Rebuild** (or uninstall + reinstall).
 Your `api_token` and other options are kept. New in v1.3.0: the default
 assistant name is `Muse` — existing installs keep their configured values,
 so nothing changes for them.
 
-To move from v1.1.0 to v1.2.0: copy the new `hatch_bridge` folder over the
+To move from v1.1.0 to v1.2.0: copy the new `muse_bridge` folder over the
 old one in `/addons/`, then **Settings → Add-ons → Add-on Store → ⋯ →
 Check for updates**, open the app and **Rebuild** (or uninstall + reinstall).
 Your `api_token` and other options are kept. New in v1.2.0: the
@@ -47,11 +54,11 @@ Your `api_token` and other options are kept. New in v1.2.0: the
 helper's name, the notification title, and the default helper entity IDs —
 set it to your own assistant's name.
 
-To move from v1.0.0 to v1.1.0: copy the new `hatch_bridge` folder over the
+To move from v1.0.0 to v1.1.0: copy the new `muse_bridge` folder over the
 old one in `/addons/`, then **Settings → Add-ons → Add-on Store → ⋯ →
 Check for updates**, open the app and **Rebuild** (or uninstall + reinstall).
 Your `api_token` and other options are kept. The app log should show
-`Hatch Bridge v1.1.0 listening on port 8099`.
+`Muse Bridge v1.1.0 listening on port 8099`.
 
 ## Requirements
 
@@ -62,16 +69,16 @@ Your `api_token` and other options are kept. The app log should show
 
 ### Option A — local app (simplest, no GitHub needed)
 
-1. Copy the `hatch_bridge` folder to your Home Assistant machine's `/addons/`
-   directory (e.g. via the Samba add-on, or `scp -r hatch_bridge <host>:/addons/`).
+1. Copy the `muse_bridge` folder to your Home Assistant machine's `/addons/`
+   directory (e.g. via the Samba add-on, or `scp -r muse_bridge <host>:/addons/`).
 2. In Home Assistant go to **Settings → Add-ons → Add-on Store → ⋯ → Check for updates**.
-3. Find **Hatch Bridge** under "Local add-ons" and click **Install**.
+3. Find **Muse Bridge** under "Local add-ons" and click **Install**.
 
 ### Option B — from this Git repository (shareable)
 
 1. In Home Assistant: **Settings → Add-ons → Add-on Store → ⋯ → Repositories**,
    paste this repo's URL.
-2. Find **Hatch Bridge** in the store and install it.
+2. Find **Muse Bridge** in the store and install it.
 
 ## Configure
 
@@ -84,9 +91,9 @@ Your `api_token` and other options are kept. The app log should show
 
    The app refuses to start until this is set.
 2. **Start** the app and check the **Log** tab. You should see
-   `Hatch Bridge v1.0.0 listening on port 8099`.
+   `Muse Bridge v1.0.0 listening on port 8099`.
 3. On your LAN, open `http://homeassistant.local:8099` — you should see the
-   "Hatch Bridge is running" page.
+   "Muse Bridge is running" page.
 
 ## Expose it securely (required for remote access)
 
@@ -124,12 +131,12 @@ Once the bridge is reachable at an `https://` URL:
 ## Files
 
 ```
-hatch-ha-bridge/
+muse-ha-bridge/
 ├── repository.yaml          # add-on repository metadata
 ├── README.md                # this file
 ├── tests/
 │   └── test_inbox.py        # inbox unit tests
-└── hatch_bridge/            # the app itself
+└── muse_bridge/            # the app itself
     ├── config.yaml          # app manifest (ports, options, permissions)
     ├── Dockerfile           # container build
     ├── requirements.txt     # Python dependencies

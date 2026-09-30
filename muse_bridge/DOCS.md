@@ -1,12 +1,12 @@
-# Hatch Bridge
+# Muse Bridge
 
-Token-protected API bridge between your Hatch AI assistant and Home Assistant.
+Token-protected API bridge between your Muse AI assistant and Home Assistant.
 
 ## Configuration
 
 ### Option: `api_token`
 
-A long random secret (minimum: don't leave it empty). Your Hatch assistant
+A long random secret (minimum: don't leave it empty). Your Muse assistant
 sends it as `Authorization: Bearer <api_token>` on every API call.
 
 Generate one:

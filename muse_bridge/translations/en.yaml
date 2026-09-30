@@ -1,7 +1,7 @@
 configuration:
   api_token:
     name: API token
-    description: "Long random secret your Hatch assistant uses to authenticate (sent as a Bearer token). Generate one with: openssl rand -hex 32"
+    description: "Long random secret your Muse assistant uses to authenticate (sent as a Bearer token). Generate one with: openssl rand -hex 32"
   log_level:
     name: Log level
     description: Verbosity of the add-on log.
@@ -15,4 +15,4 @@ configuration:
     name: Inbox poll interval
     description: Seconds between checks of the prompt helper (1-60).
 network:
-  8099/tcp: Hatch Bridge API port
+  8099/tcp: Muse Bridge API port

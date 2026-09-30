@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Local tests for Hatch Bridge v1.1.0 inbox, with a stubbed Home Assistant."""
+"""Local tests for Muse Bridge v1.4.0 inbox, with a stubbed Home Assistant."""
 import json
 import os
 import sys
@@ -19,10 +19,10 @@ with open(opts_path, "w") as f:
         },
         f,
     )
-os.environ["HATCH_BRIDGE_OPTIONS"] = opts_path
+os.environ["MUSE_BRIDGE_OPTIONS"] = opts_path
 os.environ["SUPERVISOR_TOKEN"] = "dummy-supervisor-token"
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "hatch_bridge"))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "muse_bridge"))
 import app as bridge  # noqa: E402
 
 AUTH = {"Authorization": "Bearer test-token-123"}
