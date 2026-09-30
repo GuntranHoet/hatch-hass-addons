@@ -36,7 +36,7 @@ To move from v1.3.0 to v1.4.0: this is a rebrand — the add-on is now
 **Muse Bridge** (folder `muse_bridge`, slug `muse_bridge`). Copy the new
 `muse_bridge` folder into `/addons/` alongside the old one, install it from
 the store, copy your `api_token` and other options across, then uninstall
-the old Hatch Bridge. Your prompt/response helpers (`input_text.*`) are
+the old add-on. Your prompt/response helpers (`input_text.*`) are
 untouched, so the inbox keeps working.
 
 To move from v1.2.0 to v1.3.0: copy the new `muse_bridge` folder over the
